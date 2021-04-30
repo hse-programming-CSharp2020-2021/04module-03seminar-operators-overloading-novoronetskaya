@@ -1,0 +1,24 @@
+{
+  "tests": [
+    {
+      "name": "01Task. 01Test",
+      "setup": "csc Task01/Program.cs",
+      "run": "mono Program.exe",
+      "input": "10 10",
+      "output": "20",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "01Task. 02Test",
+      "setup": "csc Task01/Program.cs",
+      "run": "mono Program.exe",
+      "input": "50 100",
+      "output": "150",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    }
+  ]
+}
