@@ -80,6 +80,10 @@ namespace Task02
             }
             return false;
         }
+        public override string ToString()
+        {
+            return $"{Area} {Population}";
+        }
     }
 
     class MainClass
