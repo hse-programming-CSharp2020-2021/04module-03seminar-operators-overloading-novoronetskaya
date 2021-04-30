@@ -209,6 +209,96 @@
       "comparison": "included",
       "timeout": 10,
       "points": 1
+    },
+    {
+      "name": "05Task. 02Test",
+      "setup": "csc Task05/Program.cs",
+      "run": "mono Program.exe",
+      "input": "5\r\n-9",
+      "output": "error",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "05Task. 03Test",
+      "setup": "csc Task05/Program.cs",
+      "run": "mono Program.exe",
+      "input": "5\r\n90",
+      "output": "4,39\r\n102,60",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "05Task. 04Test",
+      "setup": "csc Task05/Program.cs",
+      "run": "mono Program.exe",
+      "input": "12\r\n0",
+      "output": "10,53\r\n0,00",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "05Task. 05Test",
+      "setup": "csc Task05/Program.cs",
+      "run": "mono Program.exe",
+      "input": "-7\r\n-7",
+      "output": "error",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "06Task. 01Test",
+      "setup": "csc Task06/Program.cs",
+      "run": "mono Program.exe",
+      "input": "1/3\r\n1/6",
+      "output": "1/2\r\n1/6\r\n1/18\r\n2",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "06Task. 02Test",
+      "setup": "csc Task06/Program.cs",
+      "run": "mono Program.exe",
+      "input": "1/4\r\n1/4",
+      "output": "1/2\r\n0\r\n1/16\r\n1",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "06Task. 03Test",
+      "setup": "csc Task06/Program.cs",
+      "run": "mono Program.exe",
+      "input": "1/8\r\n-1/8",
+      "output": "0\r\n1/4\r\n-1/64\r\n-1",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "06Task. 04Test",
+      "setup": "csc Task06/Program.cs",
+      "run": "mono Program.exe",
+      "input": "0/4\r\n3/4",
+      "output": "3/4\r\n-3/4\r\n0\r\n0",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "06Task. 05Test",
+      "setup": "csc Task06/Program.cs",
+      "run": "mono Program.exe",
+      "input": "1/4\r\n0/4",
+      "output": "1/4\r\n1/4\r\n0\r\nzero",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
     }
   ]
 }
