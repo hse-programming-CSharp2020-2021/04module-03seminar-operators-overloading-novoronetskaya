@@ -30,28 +30,30 @@ namespace Task02
 {
     class State
     {
+        private decimal population;
         public decimal Population
         {
-            get => Population;
+            get => population;
             set
             {
                 if (value < 0)
                 {
                     throw new ArgumentException();
                 }
-                Population = value;
+                population = value;
             }
         }
+        private decimal area;
         public decimal Area
         {
-            get => Area;
+            get => area;
             set
             {
                 if (value <= 0)
                 {
                     throw new ArgumentException();
                 }
-                Area = value;
+                area = value;
             }
         }
         public static State operator +(State a, State b)

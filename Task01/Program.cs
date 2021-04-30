@@ -23,16 +23,17 @@ namespace Task01
 {
     class Bread
     {
+        private int weight;
         public int Weight
         {
-            get => Weight;
+            get => weight;
             set
             {
                 if (value < 0)
                 {
                     throw new ArgumentException();
                 }
-                Weight = value;
+                weight = value;
             }
         }
         public static Sandwich operator +(Bread bread, Butter butter)
@@ -42,16 +43,17 @@ namespace Task01
     }
     class Butter
     {
+        private int weight;
         public int Weight
         {
-            get => Weight;
+            get => weight;
             set
             {
                 if (value < 0)
                 {
                     throw new ArgumentException();
                 }
-                Weight = value;
+                weight = value;
             }
         }
     }
