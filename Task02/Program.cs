@@ -30,8 +30,54 @@ namespace Task02
 {
     class State
     {
-        public decimal Population { get; set; }
-        public decimal Area { get; set; }
+        public decimal Population
+        {
+            get => Population;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException();
+                }
+                Population = value;
+            }
+        }
+        public decimal Area
+        {
+            get => Area;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException();
+                }
+                Area = value;
+            }
+        }
+        public static State operator +(State a, State b)
+        {
+            return new State { Area = a.Area + b.Area, Population = a.Population + b.Population };
+        }
+        public static bool operator <(State a, State b)
+        {
+            decimal aDensity = a.Population / a.Area;
+            decimal bDensity = b.Population / b.Area;
+            if (aDensity < bDensity)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool operator >(State a, State b)
+        {
+            decimal aDensity = a.Population / a.Area;
+            decimal bDensity = b.Population / b.Area;
+            if (aDensity > bDensity)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 
     class MainClass
@@ -44,7 +90,6 @@ namespace Task02
                 State state1 = new State { Area = int.Parse(strs[0]), Population = int.Parse(strs[1]) };
                 strs = Console.ReadLine().Split();
                 State state2 = new State { Area = int.Parse(strs[0]), Population = int.Parse(strs[1]) };
-
                 if (state1 > state2)
                 {
                     Console.WriteLine(state1);

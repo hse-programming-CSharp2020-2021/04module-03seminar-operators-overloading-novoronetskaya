@@ -23,11 +23,37 @@ namespace Task01
 {
     class Bread
     {
-        public int Weight { get; set; }
+        public int Weight
+        {
+            get => Weight;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException();
+                }
+                Weight = value;
+            }
+        }
+        public static Sandwich operator +(Bread bread, Butter butter)
+        {
+            return new Sandwich { Weight = bread.Weight + butter.Weight };
+        }
     }
     class Butter
     {
-        public int Weight { get; set; }
+        public int Weight
+        {
+            get => Weight;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException();
+                }
+                Weight = value;
+            }
+        }
     }
     class Sandwich
     {
@@ -38,18 +64,18 @@ namespace Task01
     {
         public static void Main()
         {
-            string[] strs = Console.ReadLine().Split();
+            string[] strs = Console.ReadLine().Split(' ');
             try
             {
                 Bread bread = new Bread { Weight = int.Parse(strs[0]) };
                 Butter butter = new Butter { Weight = int.Parse(strs[1]) };
                 Sandwich sandwich = bread + butter;
+                Console.WriteLine(sandwich.Weight);
             }
             catch (ArgumentException)
             {
                 Console.WriteLine("error");
             }
-            Console.WriteLine(sandwich.Weight);
         }
     }
 }
