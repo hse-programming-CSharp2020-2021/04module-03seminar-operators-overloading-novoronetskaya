@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 /*
 Источник: https://metanit.com/
@@ -72,6 +73,7 @@ namespace Task05
         {
             try
             {
+                CultureInfo.CurrentCulture = new CultureInfo("ru-RU");
                 Dollar dollar = new Dollar { Sum = decimal.Parse(Console.ReadLine()) };
                 Euro euro = new Euro { Sum = decimal.Parse(Console.ReadLine()) };
                 Dollar newDollar = euro;
