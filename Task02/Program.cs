@@ -64,21 +64,13 @@ namespace Task02
         {
             decimal aDensity = a.Population / a.Area;
             decimal bDensity = b.Population / b.Area;
-            if (aDensity < bDensity)
-            {
-                return true;
-            }
-            return false;
+            return aDensity < bDensity;
         }
         public static bool operator >(State a, State b)
         {
             decimal aDensity = a.Population / a.Area;
             decimal bDensity = b.Population / b.Area;
-            if (aDensity > bDensity)
-            {
-                return true;
-            }
-            return false;
+            return aDensity > bDensity;
         }
         public override string ToString()
         {

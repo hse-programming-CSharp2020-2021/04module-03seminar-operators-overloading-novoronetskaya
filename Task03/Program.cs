@@ -66,6 +66,7 @@ namespace Task03
                 Clock clock = new Clock { Hours = int.Parse(Console.ReadLine()) };
                 Console.WriteLine((Clock)minute);
                 Console.WriteLine((int)clock);
+                Console.WriteLine($"!!!{minute} !!! {clock.Hours}");
             }
             catch (ArgumentException)
             {
