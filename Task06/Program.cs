@@ -30,16 +30,88 @@ Fraction - упрощенная структура, представляющая
 
 public readonly struct Fraction
 {
-    private readonly int num;
-    private readonly int den;
+    readonly int numerator;
+    readonly int denomenator;
 
-    public Fraction(int numerator, int denominator)
+    public static Fraction Parse(string input)
     {
-        num = numerator;
-        den = denominator;
+        int num = 0;
+        int den = 0;
+        if (input.Split('/').Length > 1)
+        {
+            int.TryParse(input.Split('/')[0], out num);
+            int.TryParse(input.Split('/')[1], out den);
+        }
+        else
+        {
+            int.TryParse(input, out num);
+            den = 1;
+        }
+        return new Fraction(num, den);
     }
-
-    public override string ToString() => $"{num}/{den}";
+    public Fraction(int num, int den)
+    {
+        numerator = num;
+        denomenator = den;
+    }
+    public override string ToString()
+    {
+        if (denomenator == 1)
+            return numerator.ToString();
+        return numerator + "/" + denomenator;
+    }
+    public static Fraction operator +(Fraction a, Fraction b)
+    {
+        Fraction result = new Fraction(a.numerator * b.denomenator + a.denomenator * b.numerator, a.denomenator * b.denomenator);
+        return result.Simplify();
+    }
+    public static Fraction operator *(Fraction a, Fraction b)
+    {
+        return new Fraction(a.numerator * b.numerator, a.denomenator * b.denomenator).Simplify();
+    }
+    public static Fraction operator -(Fraction a, Fraction b)
+    {
+        Fraction result = new Fraction(a.numerator * b.denomenator - a.denomenator * b.numerator, a.denomenator * b.denomenator);
+        return result.Simplify();
+    }
+    public static Fraction operator /(Fraction a, Fraction b)
+    {
+        if (b.numerator < 0)
+        {
+            return new Fraction((-1) * a.numerator * b.denomenator, (-1) * a.denomenator * b.numerator).Simplify();
+        }
+        if (b.numerator == 0)
+        {
+            throw new DivideByZeroException();
+        }
+        return new Fraction(a.numerator * b.denomenator, a.denomenator * b.numerator).Simplify();
+    }
+    private Fraction Simplify()
+    {
+        int num = Math.Abs(numerator);
+        int den = Math.Abs(denomenator);
+        while (num > 0 && den > 0)
+        {
+            if (num > den)
+            {
+                int t = num;
+                num = den;
+                den = t % den;
+            }
+            else
+            {
+                int t = den;
+                den = num;
+                num = t % num;
+            }
+        }
+        int nod = Math.Max(num, den);
+        if (numerator < 0 && denomenator < 0)
+        {
+            nod *= -1;
+        }
+        return new Fraction(numerator / nod, denomenator / nod);
+    }
 }
 
 public static class OperatorOverloading
@@ -48,7 +120,12 @@ public static class OperatorOverloading
     {
         try
         {
-            
+            Fraction fract1 = Fraction.Parse(Console.ReadLine());
+            Fraction fract2 = Fraction.Parse(Console.ReadLine());
+            Console.WriteLine(fract1 + fract2);
+            Console.WriteLine(fract1 - fract2);
+            Console.WriteLine(fract1 * fract2);
+            Console.WriteLine(fract1 / fract2);
         }
         catch (ArgumentException)
         {

@@ -27,18 +27,36 @@ namespace Task04
     class Celcius
     {
         public double Gradus { get; set; }
+        public static implicit operator Celcius(Fahrenheit degree)
+        {
+            double newDegree = 5.0 / 9 * (degree.Gradus - 32);
+            return new Celcius { Gradus = newDegree };
+        }
     }
-
     class Fahrenheit
     {
         public double Gradus { get; set; }
+        public static implicit operator Fahrenheit(Celcius degree)
+        {
+            double newDegree = 9.0 / 5 * degree.Gradus + 32;
+            return new Fahrenheit { Gradus = newDegree };
+        }
     }
-
     class MainClass
     {
         public static void Main(string[] args)
         {
-
+            try
+            {
+                Fahrenheit tf = new Fahrenheit { Gradus = double.Parse(Console.ReadLine()) };
+                Celcius tc = new Celcius { Gradus = double.Parse(Console.ReadLine()) };
+                Console.WriteLine($"{((Celcius)tf).Gradus:f2}");
+                Console.WriteLine($"{((Fahrenheit)tc).Gradus:f2}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("error");
+            }
         }
     }
 }

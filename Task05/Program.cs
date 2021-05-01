@@ -28,20 +28,55 @@ namespace Task05
 {
     class Dollar
     {
-        public decimal Sum { get; set; }
+        private decimal sum;
+        public decimal Sum
+        {
+            get => sum;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException();
+                }
+                sum = value;
+            }
+        }
+        public static explicit operator Euro(Dollar dollar)
+        {
+            return new Euro { Sum = dollar.Sum / (decimal)1.14 };
+        }
     }
     class Euro
     {
-        public decimal Sum { get; set; }
+        private decimal sum;
+        public decimal Sum
+        {
+            get => sum;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException();
+                }
+                sum = value;
+            }
+        }
+        public static implicit operator Dollar(Euro dollar)
+        {
+            return new Dollar { Sum = dollar.Sum * (decimal)1.14 };
+        }
     }
-
     class MainClass
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             try
             {
-
+                Dollar dollar = new Dollar { Sum = decimal.Parse(Console.ReadLine()) };
+                Euro euro = new Euro { Sum = decimal.Parse(Console.ReadLine()) };
+                Dollar newDollar = euro;
+                Console.WriteLine($"{((Euro)dollar).Sum:f2}");
+                Console.WriteLine($"{newDollar.Sum:f2}");
             }
             catch (ArgumentException)
             {
